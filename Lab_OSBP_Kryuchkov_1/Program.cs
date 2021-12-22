@@ -90,7 +90,7 @@ namespace Lab_OSBP_Kryuchkov_1
         {
             try
             {
-                string path = @"C:\Users\Misha\Desktop\exampleFile.txt";
+                string path = @"\exampleFile.txt";
                 Console.WriteLine("Введите строку: ");
                 string text = Console.ReadLine();
                 using StreamWriter file = new(path, append: true);
@@ -105,7 +105,7 @@ namespace Lab_OSBP_Kryuchkov_1
                 }
                 st.Close();
                 Console.WriteLine("___________________________________________");
-                Console.WriteLine("Файл создался и заполнился, находится на рабочем столе. Для продолжения нажмите ENTER");
+                Console.WriteLine("Файл создался и заполнился, находится в папке проекта. Для продолжения нажмите ENTER");
                 Console.ReadLine();
                 File.Delete(path);
             }
@@ -120,7 +120,7 @@ namespace Lab_OSBP_Kryuchkov_1
     {
         public void JsonCode()
         {
-            string path = @"C:\Users\Misha\Desktop\json.json";
+            string path = @"\json.json";
             List<model> models = new List<model>();
             Console.WriteLine("Введите количество записей: ");
             string num = Console.ReadLine();
@@ -196,7 +196,7 @@ namespace Lab_OSBP_Kryuchkov_1
     {
         public void XmlCode()
         {
-            string path = @"C:\Users\Misha\Desktop\xml.xml";
+            string path = @"\xml.xml";
             List<model> lst = new List<model>();
             Console.WriteLine("Введите количество записей: ");
             string num = Console.ReadLine();
@@ -274,9 +274,10 @@ namespace Lab_OSBP_Kryuchkov_1
     {
         public void ZipCode()
         {
-            string path = @"C:\Users\Misha\Desktop\archive";
-            string path1 = @"C:\Users\Misha\Desktop\archive2";
-            string zip = @"C:\Users\Misha\Desktop\archive.zip";
+            string workbench = @"C:\WorkBench";
+            string path = @"C:\WorkBench\archive";
+            string path1 = @"C:\WorkBench\archive2";
+            string zip = @"C:\WorkBench\archive.zip";
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -374,6 +375,9 @@ namespace Lab_OSBP_Kryuchkov_1
                 string str1 = Path.GetFileName(str);
                 File.Delete(path1 + "\\" + str1);
             }
+            Console.WriteLine("Очистка папки WorkBench");
+            Console.ReadLine();
+            Directory.Delete(workbench, true);
         }
     }
 
