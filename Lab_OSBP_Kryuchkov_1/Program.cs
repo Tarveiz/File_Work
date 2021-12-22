@@ -12,6 +12,7 @@ using System.Text;
 
 namespace Lab_OSBP_Kryuchkov_1
 {
+
     class MainMenu
     {
         public void menu()
@@ -86,11 +87,16 @@ namespace Lab_OSBP_Kryuchkov_1
 
     class FileWork
     {
+        string workbench = @"C:\WorkBench";
         public void FileCode()
         {
             try
             {
-                string path = @"\exampleFile.txt";
+                if (!Directory.Exists(workbench))
+                {
+                    Directory.CreateDirectory(workbench);
+                }
+                string path = @"C:\WorkBench\exampleFile.txt";
                 Console.WriteLine("Введите строку: ");
                 string text = Console.ReadLine();
                 using StreamWriter file = new(path, append: true);
@@ -105,22 +111,32 @@ namespace Lab_OSBP_Kryuchkov_1
                 }
                 st.Close();
                 Console.WriteLine("___________________________________________");
-                Console.WriteLine("Файл создался и заполнился, находится в папке проекта. Для продолжения нажмите ENTER");
+                Console.WriteLine("Файл создался и заполнился, находится в папке Workbench на диске C. Для продолжения нажмите ENTER");
                 Console.ReadLine();
                 File.Delete(path);
+                Console.WriteLine("Очистка папки WorkBench. Для продолжения нажмите ENTER (Из папки нужно выйти).");
+                Console.ReadLine();
+                Directory.Delete(workbench, true);
             }
             catch (Exception i)
             {
                 Console.WriteLine(i);
             }
+
         }
+
     }
 
     class JsonWork
     {
+        string workbench = @"C:\WorkBench";
         public void JsonCode()
         {
-            string path = @"\json.json";
+            if (!Directory.Exists(workbench))
+            {
+                Directory.CreateDirectory(workbench);
+            }
+            string path = @"C:\WorkBench\json.json";
             List<model> models = new List<model>();
             Console.WriteLine("Введите количество записей: ");
             string num = Console.ReadLine();
@@ -189,14 +205,22 @@ namespace Lab_OSBP_Kryuchkov_1
             }
             Console.WriteLine("___________________________________________");
             File.Delete(path);
+            Console.WriteLine("Очистка папки WorkBench. Для продолжения нажмите ENTER (Из папки нужно выйти).");
+            Console.ReadLine();
+            Directory.Delete(workbench, true);
         }
     }
 
     class XmlWork
     {
+        string workbench = @"C:\WorkBench";
         public void XmlCode()
         {
-            string path = @"\xml.xml";
+            if (!Directory.Exists(workbench))
+            {
+                Directory.CreateDirectory(workbench);
+            }
+            string path = @"C:\WorkBench\xml.xml";
             List<model> lst = new List<model>();
             Console.WriteLine("Введите количество записей: ");
             string num = Console.ReadLine();
@@ -267,6 +291,9 @@ namespace Lab_OSBP_Kryuchkov_1
             }
             Console.WriteLine("___________________________________________");
             File.Delete(path);
+            Console.WriteLine("Очистка папки WorkBench. Для продолжения нажмите ENTER (Из папки нужно выйти).");
+            Console.ReadLine();
+            Directory.Delete(workbench, true);
         }
     }
 
@@ -375,7 +402,7 @@ namespace Lab_OSBP_Kryuchkov_1
                 string str1 = Path.GetFileName(str);
                 File.Delete(path1 + "\\" + str1);
             }
-            Console.WriteLine("Очистка папки WorkBench");
+            Console.WriteLine("Очистка папки WorkBench. Для продолжения нажмите ENTER (Из папки нужно выйти).");
             Console.ReadLine();
             Directory.Delete(workbench, true);
         }
